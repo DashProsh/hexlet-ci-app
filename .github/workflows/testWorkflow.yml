@@ -1,12 +1,18 @@
 name: workflow
-on: push 
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+      - uses: hexlet-components/hello-from-hexlet-action@release
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - run: make install
       - run: make setup
       - run: make test
       - run: make lint
-    
+
